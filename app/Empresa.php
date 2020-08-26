@@ -26,7 +26,7 @@ class Empresa extends Model
             ['categorias.descripcion','like','%'.$clave.'%'],
             ['empresas.estado', '=', 'ACTIVO']
           ])
-        ->groupByRaw('empresas.id, tipo_negocio.descripcion')
+        ->groupByRaw('empresas.id, empresas.nombre, empresas.nombre_unico, empresas.descripcion, empresas.foto, tipo_negocio.descripcion')
         ->get();
 
         return $empresas;
