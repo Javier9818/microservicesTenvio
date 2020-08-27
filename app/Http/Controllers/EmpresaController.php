@@ -16,4 +16,8 @@ class EmpresaController extends Controller
         return response()->json(Empresa::searchCompanies($clave));
     }
 
+    public function searchProductsByToken($token){
+        return response()->json(Empresa::searchProductsByToken($token));
+    }
+
 }

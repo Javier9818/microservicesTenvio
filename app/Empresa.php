@@ -7,6 +7,7 @@ require '../utils/functions.php';
 
 class Empresa extends Model
 {
+
     public static function getAll(){
         return DB::select('SELECT * FROM empresas');
     }
@@ -30,5 +31,16 @@ class Empresa extends Model
         ->get();
 
         return $empresas;
+    }
+
+    public static function searchProductsByToken($token){
+      $productos = DB::table('productos')
+      ->join('categorias_menus', 'productos.categorias_menu_id', '=', 'categorias_menus.id')
+      ->join('empresas', 'empresas.id', '=', 'productos.empresa_id')
+      ->selectRaw('productos.*, categorias_menus.descripcion as categoria')
+      ->whereRaw('empresas.token_fb = ?', [$token])
+      ->get();
+
+      return $productos;
     }
 }
