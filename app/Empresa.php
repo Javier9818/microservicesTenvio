@@ -43,4 +43,11 @@ class Empresa extends Model
 
       return $productos;
     }
+
+    public static function getEmpresa($id){
+      $empresa = DB::table('empresas')->whereRaw('id = ? or token_fb = ?', [$id, $id])
+              ->selectRaw('empresas.*')  
+              ->get();
+      return $empresa;
+    }
 }

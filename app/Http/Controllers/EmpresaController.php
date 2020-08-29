@@ -17,7 +17,10 @@ class EmpresaController extends Controller
     }
 
     public function searchProductsByToken($token){
-        return response()->json(Empresa::searchProductsByToken($token));
+        return response()->json([
+            "productos"=> Empresa::searchProductsByToken($token),
+            "info" => Empresa::getEmpresa($token)
+        ]);
     }
 
 }
