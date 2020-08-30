@@ -38,7 +38,7 @@ class Empresa extends Model
       ->join('categorias_menus', 'productos.categorias_menu_id', '=', 'categorias_menus.id')
       ->join('empresas', 'empresas.id', '=', 'productos.empresa_id')
       ->selectRaw('productos.*, categorias_menus.descripcion as categoria')
-      ->whereRaw('empresas.token_fb = ? or empresas.id = ?, or empresas.nombre_unico = ?', [$token, $token, $token])
+      ->whereRaw('empresas.token_fb = ? or empresas.id = ? or empresas.nombre_unico = ?', [$token, $token, $token])
       ->get();
 
       return $productos;
