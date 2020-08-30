@@ -45,7 +45,7 @@ class Empresa extends Model
     }
 
     public static function getEmpresa($id){
-      $empresa = DB::table('empresas')->whereRaw('empresas.id = ? or token_fb = ? or nombre_unico', [$id, $id, $id])
+      $empresa = DB::table('empresas')->whereRaw('empresas.id = ? or token_fb = ? or nombre_unico = ?', [$id, $id, $id])
               ->join('ciudad', 'ciudad.id', '=', 'empresas.ciudad_id')
               ->selectRaw('empresas.*, ciudad.nombre as ciudad')  
               ->get();
