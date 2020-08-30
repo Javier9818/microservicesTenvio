@@ -9,7 +9,7 @@ class Empresa extends Model
 {
 
     public static function getAll(){
-        return DB::select('SELECT * FROM empresas');
+        return DB::select("SELECT * FROM empresas WHERE estado = 'ACTIVO'");
     }
 
     public static function searchCompanies($clave){
