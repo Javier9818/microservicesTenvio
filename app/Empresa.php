@@ -51,4 +51,21 @@ class Empresa extends Model
               ->get();
       return $empresa;
     }
+
+    public static function getTypeDelivery($empresa_id){
+      $empresa = DB::table('empresas')
+                ->join('tipo_entrega_empresas', 'tipo_entrega_empresas.empresa_id', '=', 'empresas.id')
+                ->join('tipo_entregas', 'tipo_entregas.id', '=', 'tipo_entrega_empresas.tipo_entrega_id')
+                ->selectRaw('tipo_entregas.id as tipo_entrega_id, tipo_entregas.nombre as tipo_entrega, empresas.id as empresa_id')
+                ->where('empresas.id', '=', $empresa_id)
+                ->get();
+      return $empresa;
+    }
+
+    public static function getTypePayments($empresa_id){
+      $tipos = DB::select('select * from tipopago t
+                          inner join tipopago_empresa te on te.tipopago_id = t.id
+                          where te.empresa_id = ? and te.estado=1', [$empresa_id]);
+      return $tipos;
+    }
 }

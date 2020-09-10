@@ -9,6 +9,8 @@ $router->get('/', function () use ($router) {
 $router->get('/empresa', 'EmpresaController@getAll');
 $router->get('/empresa/search/{clave}', 'EmpresaController@searchCompanies');
 $router->get('/empresa/productos/{token}', 'EmpresaController@searchProductsByToken');
+$router->get('/empresa/{id}/type-delivery', 'EmpresaController@getTypeDelivery');
+$router->get('/empresa/{id}/type-payments', 'EmpresaController@getTypePayments');
 
 
 

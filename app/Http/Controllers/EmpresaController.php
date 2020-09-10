@@ -23,4 +23,16 @@ class EmpresaController extends Controller
         ]);
     }
 
+    public function getTypeDelivery($empresa_id){
+        return response()->json([
+            "types_delivery"=> Empresa::getTypeDelivery($empresa_id)
+        ]);
+    }
+  
+    public function getTypePayments($empresa_id){
+        return response()->json([
+            "types_payments"=> Empresa::getTypePayments($empresa_id)
+        ]);
+    }
+
 }
