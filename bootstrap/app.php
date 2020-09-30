@@ -71,17 +71,19 @@ $app->configure('app');
 | route or middleware that'll be assigned to some specific routes.
 |
 */
+$app->routeMiddleware([
+    'jwt.auth' => App\Http\Middleware\JwtMiddleware::class,
+]);
 
 $app->middleware([
     App\Http\Middleware\CorsMiddleware::class
- ]);
- $app->middleware([
-    App\Http\Middleware\AuthenticateToken::class
  ]);
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
+
+
 
 /*
 |--------------------------------------------------------------------------

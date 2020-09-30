@@ -38,14 +38,14 @@ class Empresa extends Model
       ->join('categorias_menus', 'productos.categorias_menu_id', '=', 'categorias_menus.id')
       ->join('empresas', 'empresas.id', '=', 'productos.empresa_id')
       ->selectRaw('productos.*, categorias_menus.descripcion as categoria')
-      ->whereRaw('empresas.token_fb = ? or empresas.id = ? or empresas.nombre_unico = ?', [$token, $token, $token])
+      ->whereRaw('empresas.id_fb = ?  or empresas.id = ? or empresas.token_fb = ? or empresas.nombre_unico = ?', [$token, $token, $token, $token])
       ->get();
 
       return $productos;
     }
 
     public static function getEmpresa($id){
-      $empresa = DB::table('empresas')->whereRaw('empresas.id = ? or token_fb = ? or nombre_unico = ?', [$id, $id, $id])
+      $empresa = DB::table('empresas')->whereRaw('id_fb = ? or empresas.id = ? or token_fb = ? or nombre_unico = ?', [$id, $id, $id, $id])
               ->join('ciudad', 'ciudad.id', '=', 'empresas.ciudad_id')
               ->selectRaw('empresas.*, ciudad.nombre as ciudad')  
               ->get();
